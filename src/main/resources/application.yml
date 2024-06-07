@@ -1,0 +1,42 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 478422928360-e77mug3eispb3ecn542doh28n2sul117.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
+            scope: email, profile
+          kakao:
+            client-id: 3fea905f5e6f42979737f81328ff8d52
+            client-secret: jeGj4K3gBJY5aN61Nqgzhj9rpApAb5pW
+            client-authentication-method: client_secret_post
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            authorization-grant-type: authorization_code
+            client-name: kakao
+            scope: profile_nickname, profile_image, account_email
+          naver:
+            client-id: MQo2JpTbi2CnctXlYIcQ  # 네이버 개발자 센터에서 발급받은 클라이언트 ID
+            client-secret: 9RP5LFYDrb # 네이버 개발자 센터에서 발급받은 클라이언트 시크릿
+            client-authentication-method: client_secret_post
+            redirect-uri: http://localhost:8080/login/oauth2/code/naver
+            authorization-grant-type: authorization_code
+            client-name: naver
+            scope: name, email
+
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+          naver:
+            authorization-uri: https://nid.naver.com/oauth2.0/authorize
+            token-uri: https://nid.naver.com/oauth2.0/token
+            user-info-uri: https://openapi.naver.com/v1/nid/me
+            user-name-attribute: response
+jwt:
+  secret: mG3tFE6qQ+VQlF7yGqZKmE5kOxAbcD5j0fXEPxFQJ3o=
+  refresh-secret: QJzYfqXZ8ztxHGVtTtRf+3PFEQlLXMj4t7UZ/dF4N0U=
+
