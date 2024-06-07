@@ -1,0 +1,15 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: YOUR_GOOGLE_CLIENT_ID
+            client-secret: YOUR_GOOGLE_CLIENT_SECRET
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
+            scope: email, profile
+          # ... 다른 OAuth2 제공자 설정 ...
+
+jwt:
+  secret: YOUR_JWT_SECRET
+  refresh-secret: YOUR_JWT_REFRESH_SECRET
