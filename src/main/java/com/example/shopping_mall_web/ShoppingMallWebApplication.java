@@ -18,5 +18,5 @@ public class ShoppingMallWebApplication {
 		objectMapper.registerModule(new JavaTimeModule());
 		return objectMapper;
 	}
-
+//테스트
 }
