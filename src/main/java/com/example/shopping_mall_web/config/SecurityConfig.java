@@ -44,11 +44,12 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/oauth2/**", "/css/**", "/images/**", "/js/**").permitAll() // 로그인 및 기타 공용 엔드포인트 접근 허용
+                        .requestMatchers("/auth/**", "/oauth2/**", "/css/**", "/images/**", "/js/**", "/api/products/public").permitAll() // 로그인, 기타 공용 엔드포인트 및 /api/products/public 접근 허용
                         .requestMatchers("/api/user/profile", "/api/user/update", "/api/user/delete", "/api/userinfo").authenticated() // 로그인된 사용자 접근 허용
                         .requestMatchers("/api/products/create", "/api/products/update/**", "/api/products/delete/**").access("hasRole('ROLE_USER') and @userSecurity.isSeller(authentication)") // SELLER 권한만 접근 가능
                         .requestMatchers("/api/users/**", "/api/all", "/api/{userId}/grant-seller").hasRole("ADMIN") // ADMIN 권한만 접근 가능
-                        .anyRequest().authenticated()) // 나머지 요청은 인증 필요
+                        .anyRequest().authenticated())
+
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .logout(logout -> logout
                         .logoutUrl("/auth/logout")
@@ -60,6 +61,7 @@ public class SecurityConfig {
                         .userInfoEndpoint(user -> user.userService(oAuth2Service))
                         .successHandler(oAuth2LoginSuccessHandler)
                         .failureHandler(oAuth2LoginFailureHandler()));
+
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
