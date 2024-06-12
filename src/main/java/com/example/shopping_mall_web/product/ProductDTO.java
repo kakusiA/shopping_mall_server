@@ -1,8 +1,8 @@
 package com.example.shopping_mall_web.product;
 
 import lombok.Data;
-
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 public class ProductDTO {
@@ -13,6 +13,7 @@ public class ProductDTO {
     private Integer stockQuantity;
     private Long sellerId;
     private BigDecimal price;
-    private String productImg;
     private String category;
+    private List<String> images;
+    private String contents;
 }

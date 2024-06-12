@@ -2,12 +2,12 @@ package com.example.shopping_mall_web.product;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
-@Data // Lombok 어노테이션
+@Data
 public class Product {
 
     @Id
@@ -32,10 +32,11 @@ public class Product {
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
-    @Column(name = "product_img", nullable = false)
-    private String productImg;
+    private String contents;
 
     @Column(name = "category")
     private String category;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductImage> images;
 }
